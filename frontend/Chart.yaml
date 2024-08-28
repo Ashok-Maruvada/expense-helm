@@ -1,0 +1,4 @@
+apiVersion: v1
+name: frontend
+version: 0.0.1
+description: this is helm implementation of frontend component in expense project

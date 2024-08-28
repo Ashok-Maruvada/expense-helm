@@ -1,0 +1,39 @@
+apiVersion: v1
+kind: Deployment
+metadata:
+  name: frontend
+  namespace: expense
+  labels: 
+    project: expense
+    component: frontend
+spec:
+  replicas: {{ .Values.deployment.replicas }}
+  selector:
+    matchLabels:
+      component: frontend
+      project: expense
+      tier: web
+  template:
+    metadata:
+      labels:
+        component: frontend
+        project: expense
+        tier: web
+    spec:
+      containers:
+      - name: frontend
+        image: learndevops/frontend:{{ .Values.deployment.imageversion }}
+        volumeMounts:
+        - name: nginx-conf
+          mountpath: /etc/nginx/nginx.conf
+          subpath: nginx.conf
+          readonly: true
+      volumes:
+      - name: nginx-conf
+        envFrom:
+          configMapRef:
+            name: frontend
+            items:
+            - key: nginx.conf
+              path: nginx.conf
+          
