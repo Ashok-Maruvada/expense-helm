@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: mysql
+  namespace: expense
+  labels:
+    name: mysql
+    component: db
+    project: expense
+spec:
+  replicas: {{ .Values.deployment.replicas }}
+  selector:
+    matchLabels:
+      component: mysql
+      tier: db
+      project: expense
+  template:
+    metadata:
+      component: mysql
+      tier: db
+      project: expense
+    spec:
+      containers:
+      - name: mysql
+        image: learndevops143/mysql:{{ .Values.deployment.imageversion }}
+        
