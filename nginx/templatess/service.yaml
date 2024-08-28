@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx
+spec:
+  type: LoadBalancer
+  selector:
+    component: nginx
+    project: expense
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: {{ .Values.service.tgport }}
+    nodePort: {{ .Values.service.nport }}

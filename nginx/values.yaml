@@ -1,0 +1,8 @@
+configmap:
+  port: 8080
+deployment:
+  replicas: 2
+  imageversion: v1.0.0
+service:
+  tgport: 8080
+  nport: 32132

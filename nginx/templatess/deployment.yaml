@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx
+  labels:
+    component: nginx
+    project: expense
+spec:
+  replicas: {{ .Values.deployment.replicas }}
+  selector:
+    matchLabels:
+      component: nginx
+      project: expense
+
+#this is pod definition
+  template:
+    metadata:
+      name: nginx
+      labels:
+        component: nginx
+        project: expense
+      
+    spec:
+      containers:
+      - name: nginx
+      # this image already there in learndevops143 account of dockerhub , previously pushed 
+        image: learndevops143/nginx:{{ .Values.deployment.imageversion }}
