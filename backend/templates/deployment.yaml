@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: Deployment
+metadata:
+  name: backend
+  namespace: expense
+  labels:
+    name: dm
+    project: expense
+    component: backend
+spec:
+  replicas: {{ .Values.deployment.replicas }}
+  selector:
+    matchLabels:
+      component: backend
+      project: expense
+      tier: backend
+  template:
+    metadata:
+      labels:
+        component: backend
+        project: expense
+        tier: backend
+    spec:
+      containers:
+      - name: backend
+        image: learndevops143/backend:{{ .Values.deployment.imageversion }}

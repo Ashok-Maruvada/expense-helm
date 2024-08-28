@@ -16,11 +16,11 @@ spec:
       project: expense
   template:
     metadata:
-      component: mysql
-      tier: db
-      project: expense
+      labels:
+        component: mysql
+        tier: db
+        project: expense
     spec:
       containers:
       - name: mysql
         image: learndevops143/mysql:{{ .Values.deployment.imageversion }}
-        
